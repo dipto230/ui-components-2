@@ -1,47 +1,133 @@
-# Getting Started with Create React App
+UI Components Library
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A reusable set of modern UI components built with React, TypeScript, TailwindCSS, Framer Motion, and documented using Storybook.
+This project currently includes a DataTable and an InputField component with flexible configurations and animations.
 
-## Available Scripts
+🚀 Features
+✅ InputField
 
-In the project directory, you can run:
+Variants: outlined, filled, ghost
 
-### `npm start`
+Sizes: sm, md, lg
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+States: disabled, invalid, clearable, password toggle
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Animated error and helper messages
 
-### `npm test`
+Smooth transitions with Framer Motion
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+✅ DataTable
 
-### `npm run build`
+Configurable columns and rows
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Sorting (asc/desc) by column
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Row selection with checkboxes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Loading state (skeleton shimmer)
 
-### `npm run eject`
+Empty state with animation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Built-in animations for table rows (Framer Motion)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+📦 Tech Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+React 18 + TypeScript
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+TailwindCSS for styling
 
-## Learn More
+Framer Motion for animations
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Storybook for documentation & isolated development
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-"# ui-components-2" 
+classnames for conditional styling
+
+⚙️ Installation & Setup
+1. Clone Repository
+git clone https://github.com/your-username/ui-components.git
+cd ui-components
+
+2. Install Dependencies
+npm install
+# or
+yarn install
+
+3. Run Storybook
+npm run storybook
+# or
+yarn storybook
+
+
+Storybook will start at http://localhost:6006/
+
+4. Run in Development Mode
+npm start
+# or
+yarn start
+
+📖 Usage
+InputField Example
+import { InputField } from "./components/InputField";
+
+export function Example() {
+  return (
+    <InputField
+      label="Email"
+      placeholder="Enter your email"
+      helperText="We'll never share your email"
+      invalid={false}
+      clearable
+      passwordToggle
+    />
+  );
+}
+
+DataTable Example
+import { DataTable, Column } from "./components/DataTable";
+
+interface User {
+  id: number;
+  name: string;
+  age: number;
+}
+
+const data: User[] = [
+  { id: 1, name: "Alice", age: 24 },
+  { id: 2, name: "Bob", age: 30 },
+];
+
+const columns: Column<User>[] = [
+  { key: "name", title: "Name", dataIndex: "name", sortable: true },
+  { key: "age", title: "Age", dataIndex: "age", sortable: true },
+];
+
+export function Example() {
+  return (
+    <DataTable<User>
+      data={data}
+      columns={columns}
+      selectable
+      onRowSelect={(rows) => console.log("Selected rows:", rows)}
+    />
+  );
+}
+
+🛠️ Approach
+
+Component Design – Built reusable, type-safe React components with generics for flexibility.
+
+Styling – Used TailwindCSS utility classes for consistency and rapid UI development.
+
+Animations – Integrated Framer Motion for smooth enter/exit transitions (loading, empty state, error messages, row rendering).
+
+Storybook Integration – Documented each component with stories showcasing different states and configurations.
+
+Accessibility – Included aria-* attributes, disabled states, and semantic HTML elements.
+
+📚 Storybook
+
+All components are documented in Storybook with interactive props and states.
+You can explore them locally by running:
+
+npm run storybook
+
